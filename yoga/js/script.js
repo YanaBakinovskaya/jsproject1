@@ -121,31 +121,4 @@ window.addEventListener('DOMContentLoaded', function () {
       }
     }, false);
   }
-
-  // let navLink = document.getElementsByTagName('a'),
-  //     about = document.querySelector('#about').scrollTop;
-  // console.log(navLink[0]);
-  // console.log(navLink[0].getAttribute('href'));
-  // function scrollMenu() {
-
-  //   about.scrollIntoView({
-  //     block: "start",
-  //     behavior: "smooth"
-  //   });
-  // }
-  //navLink.addEventListener('click', scrollMenu);
-  //for (let i = 0; i < 4; i++) {
-    //let has = navLink[i].getAttribute('href').textContent;
-    //navLink[0].addEventListener('click', scrollMenu);
-      //let has = navLink[i].getAttribute('href').replace('#','');
-      
-        //console.log(has);
-        //about.scrollIntoView({behavior: "smooth"});
-      
-    //});
-  //}
-  // navLink[0].addEventListener('click', function() {
-  //   scrollTo(navLink[0], about);
-  // });
-
 });
