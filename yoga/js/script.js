@@ -95,23 +95,23 @@ window.addEventListener('DOMContentLoaded', function () {
 
   //scroll
   let navLink = document.querySelectorAll('[href^="#"]'),
-      speed = 2;
+    speed = 2;
 
   for (let i = 0; i < navLink.length; i++) {
     navLink[i].addEventListener('click', function (event) {
       event.preventDefault();
       let w = window.pageYOffset,
-          hash = this.href.replace(/[^#]*(.*)/, '$1'),
-          t = document.querySelector(hash).getBoundingClientRect().top,
+        hash = this.href.replace(/[^#]*(.*)/, '$1'),
+        t = document.querySelector(hash).getBoundingClientRect().top,
         start = null;
       requestAnimationFrame(step);
 
       function step(time) {
         if (start === null) {
           start = time;
-        }  
+        }
         let progress = time - start,
-            r = (t < 0 ? Math.max(w - progress / speed, w + t) : Math.min(w + progress / speed, w + t));
+          r = (t < 0 ? Math.max(w - progress / speed, w + t) : Math.min(w + progress / speed, w + t));
         window.scrollTo(0, r);
         if (r != w + t) {
           requestAnimationFrame(step);
@@ -121,4 +121,39 @@ window.addEventListener('DOMContentLoaded', function () {
       }
     }, false);
   }
+
+  // show modal
+
+  let overlay = document.querySelector('.overlay'),
+    popup = document.querySelector('.popup'),
+    close = document.querySelector('.popup-close'),
+    descBtn = document.querySelectorAll('.description-btn');
+    descBtn.forEach(function(item) {
+      item.classList.add('more');
+    });
+
+  let more = document.querySelectorAll('.more');
+
+  more.forEach(function(item) {
+    item.addEventListener('click', function () {
+      overlay.style.display = 'block';
+      this.classList.add('more-splash');
+      document.body.style.overflow = 'hidden';
+    });
+
+    close.addEventListener('click', function () {
+      overlay.style.display = 'none';
+      item.classList.remove('more-splash');
+      document.body.style.overflow = '';
+    });
+
+    overlay.addEventListener('click', function (event) {
+      let target = popup;
+      if (!target.contains(event.target)) {
+        overlay.style.display = 'none';
+        item.classList.remove('more-splash');
+        document.body.style.overflow = '';
+      }
+    });
+  });
 });
